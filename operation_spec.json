@@ -31,7 +31,7 @@
         "keepsamples": {
             "description": "By default, the set of samples/columns will be kept and the remaining columns will be removed. By unselecting, we will remove the samples/columns you have chosen.", 
             "name": "Keep the selected samples/columns?:", 
-            "required": true, 
+            "required": false, 
             "spec": {
                 "attribute_type": "Boolean"
             }
@@ -39,7 +39,7 @@
         "keepfeatures": {
             "description": "By default, the set of genes/rows will be kept and the remaining rows will be removed. By unselecting, we will remove the genes/rows you have chosen.", 
             "name": "Keep the selected genes/rows?:", 
-            "required": true, 
+            "required": false, 
             "spec": {
                 "attribute_type": "Boolean"
             }
