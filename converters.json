@@ -1,0 +1,7 @@
+{
+  "input_matrix":"api.converters.data_resource.LocalDockerSingleDataResourceConverter", 
+  "samples": "api.converters.element_set.ObservationSetCsvConverter",
+  "features": "api.converters.element_set.FeatureSetCsvConverter",
+  "keepsamples": "api.converters.basic_attributes.BooleanAsIntegerConverter",
+  "keepfeatures": "api.converters.basic_attributes.BooleanAsIntegerConverter"
+}

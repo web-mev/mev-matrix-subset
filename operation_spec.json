@@ -1,0 +1,59 @@
+{
+    "name": "Expression matrix subset (non-integer)", 
+    "description": "Performs a basic subset operation on a table/matrix. Use this for removing outlier or unwanted samples and genes. Note that this tool creates a \"numeric\" matrix output, which permits non-integer entries. If you have an integer matrix (such as an RNA-seq count matrix), it is best to use the specific subset tool for that matrix since certain analysis types (e.g. DESeq2) require integers to work. This tool will output the more general numeric matrix regardless of the input format.", 
+    "inputs": {
+        "input_matrix": {
+            "description": "The input matrix. For example, a gene expression matrix.", 
+            "name": "Input matrix:", 
+            "required": true, 
+            "spec": {
+                "attribute_type": "DataResource", 
+                "resource_types": ["MTX","EXP_MTX"], 
+                "many": false
+            }
+        }, 
+        "samples": {
+            "description": "A set of samples or columns in your file. Note that you can choose to either keep or remove these. If left blank, we will not remove any samples/columns", 
+            "name": "Samples/columns:", 
+            "required": false, 
+            "spec": {
+                "attribute_type": "ObservationSet"
+            }
+        },
+        "features": {
+            "description": "A set of genes or rows in your file. Note that you can choose to either keep or remove these. If left blank, we will not remove any genes/rows.", 
+            "name": "Genes/rows:", 
+            "required": false, 
+            "spec": {
+                "attribute_type": "FeatureSet"
+            }
+        },
+        "keepsamples": {
+            "description": "By default, the set of samples/columns will be kept and the remaining columns will be removed. By unselecting, we will remove the samples/columns you have chosen.", 
+            "name": "Keep the selected samples/columns?:", 
+            "required": true, 
+            "spec": {
+                "attribute_type": "Boolean"
+            }
+        },
+        "keepfeatures": {
+            "description": "By default, the set of genes/rows will be kept and the remaining rows will be removed. By unselecting, we will remove the genes/rows you have chosen.", 
+            "name": "Keep the selected genes/rows?:", 
+            "required": true, 
+            "spec": {
+                "attribute_type": "Boolean"
+            }
+        }
+    }, 
+    "outputs": {
+        "reduced_matrix": {
+            "spec": {
+                "attribute_type": "DataResource", 
+                "resource_type": "MTX",
+                "many": false
+            }
+        }
+    }, 
+    "mode": "local_docker",
+    "workspace_operation": true
+}
