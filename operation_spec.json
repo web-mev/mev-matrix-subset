@@ -1,14 +1,14 @@
 {
-    "name": "Expression matrix subset (non-integer)", 
-    "description": "Performs a basic subset operation on a table/matrix. Use this for removing outlier or unwanted samples and genes. Note that this tool creates a \"numeric\" matrix output, which permits non-integer entries. If you have an integer matrix (such as an RNA-seq count matrix), it is best to use the specific subset tool for that matrix since certain analysis types (e.g. DESeq2) require integers to work. This tool will output the more general numeric matrix regardless of the input format.", 
+    "name": "Expression matrix subset", 
+    "description": "Performs a basic subset operation on a table/matrix, such as a raw RNA-seq count matrix. Use this for removing outlier or unwanted samples(columns) and genes/features(rows).", 
     "inputs": {
         "input_matrix": {
             "description": "The input matrix. For example, a gene expression matrix.", 
             "name": "Input matrix:", 
             "required": true, 
             "spec": {
-                "attribute_type": "DataResource", 
-                "resource_types": ["MTX","EXP_MTX"], 
+                "attribute_type": "VariableDataResource", 
+                "resource_types": ["MTX", "EXP_MTX","RNASEQ_COUNT_MTX","I_MTX"], 
                 "many": false
             }
         }, 
@@ -48,8 +48,8 @@
     "outputs": {
         "reduced_matrix": {
             "spec": {
-                "attribute_type": "DataResource", 
-                "resource_type": "MTX",
+                "attribute_type": "VariableDataResource", 
+                "resource_types": ["MTX", "EXP_MTX","RNASEQ_COUNT_MTX","I_MTX"], 
                 "many": false
             }
         }

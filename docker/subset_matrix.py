@@ -3,13 +3,17 @@
 import sys
 import os
 import json
+import re
 import pandas as pd
 import argparse
 
+# This is used to split the path and the resource type
+DELIMITER = ':::'
 
 def parse_args():
     parser = argparse.ArgumentParser()
 
+    # the -i arg is formatted like <path>:::<resource type>
     parser.add_argument('-i', '--input', \
         required=True, \
         dest = 'input_matrix',
@@ -69,12 +73,28 @@ if __name__ == '__main__':
     args = parse_args()
     # args is like Namespace(
     #    cols='a,b,c', 
-    #    input_matrix='foo.tsv', 
+    #    input_matrix='foo.tsv:::MTX', 
     #    keepcols=True, 
     #    keeprows=False, 
     #    rows=None)
 
-    df = pd.read_table(args.input_matrix, sep='\t', index_col=0)
+    # Split the -i arg into the path and the resource type
+    # We don't do anything with the resource type except echo
+    # it to the output
+    split_input_arg = args.input_matrix.split(DELIMITER)
+    input_path = split_input_arg[0]
+    resource_type = split_input_arg[1]
+
+    df = pd.read_table(input_path, sep='\t', index_col=0)
+
+    # Check that we are in fact dealing with an integer matrix
+    for i,col in enumerate(df.dtypes):
+        if not re.match('int\d{0,2}', str(col)):
+            sys.stderr.write('The column "{c}" was not fully'
+            ' populated with integers. Please check this.'.format(
+                c = df.dtypes.index[i]
+            ))
+            sys.exit(1)
 
     # First remove columns/samples (if any specified)
     # If cols was not specified, then we ignore the 'keepcols'
@@ -114,11 +134,14 @@ if __name__ == '__main__':
             df = df.loc[~row_idx]
 
     if all(df.shape):
-        working_dir = os.path.dirname(args.input_matrix)
+        working_dir = os.path.dirname(input_path)
         fout = os.path.join(working_dir, 'reduced_matrix.tsv')
         df.to_csv(fout, sep='\t')
         outputs = {
-            'reduced_matrix': fout
+            'reduced_matrix': {
+                'path':fout,
+                'resource_type': resource_type
+            }
         }
         json.dump(outputs, open(os.path.join(working_dir, 'outputs.json'), 'w'))
     else:
