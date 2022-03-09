@@ -47,6 +47,7 @@
     }, 
     "outputs": {
         "reduced_matrix": {
+            "required": true,
             "spec": {
                 "attribute_type": "VariableDataResource", 
                 "resource_types": ["MTX", "EXP_MTX","RNASEQ_COUNT_MTX","I_MTX"], 
