@@ -88,8 +88,9 @@ if __name__ == '__main__':
     df = pd.read_table(input_path, sep='\t', index_col=0)
 
     # Check that we are in fact dealing with an integer matrix
+    target_pattern = '(float|int)\d{0,2}'
     for i,col in enumerate(df.dtypes):
-        if not re.match('int\d{0,2}', str(col)):
+        if not re.match(target_pattern, str(col)):
             sys.stderr.write('The column "{c}" was not fully'
             ' populated with integers. Please check this.'.format(
                 c = df.dtypes.index[i]
