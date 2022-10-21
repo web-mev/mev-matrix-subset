@@ -6,6 +6,7 @@
             "description": "The input matrix. For example, a gene expression matrix.", 
             "name": "Input matrix:", 
             "required": true, 
+            "converter": "api.converters.data_resource.LocalDockerSingleVariableDataResourceConverter",
             "spec": {
                 "attribute_type": "VariableDataResource", 
                 "resource_types": ["MTX", "EXP_MTX","RNASEQ_COUNT_MTX","I_MTX"], 
@@ -16,6 +17,7 @@
             "description": "A set of samples or columns in your file. Note that you can choose to either keep or remove these. If left blank, we will not remove any samples/columns", 
             "name": "Samples/columns:", 
             "required": false, 
+            "converter": "api.converters.element_set.ObservationSetCsvConverter",
             "spec": {
                 "attribute_type": "ObservationSet"
             }
@@ -24,6 +26,7 @@
             "description": "A set of genes or rows in your file. Note that you can choose to either keep or remove these. If left blank, we will not remove any genes/rows.", 
             "name": "Genes/rows:", 
             "required": false, 
+            "converter": "api.converters.element_set.FeatureSetCsvConverter",
             "spec": {
                 "attribute_type": "FeatureSet"
             }
@@ -32,6 +35,7 @@
             "description": "By default, the set of samples/columns will be kept and the remaining columns will be removed. By unselecting, we will remove the samples/columns you have chosen.", 
             "name": "Keep the selected samples/columns?:", 
             "required": false, 
+            "converter": "api.converters.basic_attributes.BooleanAsIntegerConverter",
             "spec": {
                 "attribute_type": "Boolean"
             }
@@ -40,6 +44,7 @@
             "description": "By default, the set of genes/rows will be kept and the remaining rows will be removed. By unselecting, we will remove the genes/rows you have chosen.", 
             "name": "Keep the selected genes/rows?:", 
             "required": false, 
+            "converter": "api.converters.basic_attributes.BooleanAsIntegerConverter",
             "spec": {
                 "attribute_type": "Boolean"
             }
@@ -48,6 +53,7 @@
     "outputs": {
         "reduced_matrix": {
             "required": true,
+            "converter": "api.converters.data_resource.LocalDockerSingleVariableDataResourceConverter",
             "spec": {
                 "attribute_type": "VariableDataResource", 
                 "resource_types": ["MTX", "EXP_MTX","RNASEQ_COUNT_MTX","I_MTX"], 
