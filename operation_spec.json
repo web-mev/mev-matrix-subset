@@ -6,7 +6,7 @@
             "description": "The input matrix. For example, a gene expression matrix.", 
             "name": "Input matrix:", 
             "required": true, 
-            "converter": "api.converters.data_resource.LocalDockerSingleVariableDataResourceConverter",
+            "converter": "api.converters.data_resource.LocalDockerSingleDataResourceWithTypeConverter",
             "spec": {
                 "attribute_type": "VariableDataResource", 
                 "resource_types": ["MTX", "EXP_MTX","RNASEQ_COUNT_MTX","I_MTX"], 
