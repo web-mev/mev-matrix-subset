@@ -32,21 +32,23 @@
             }
         },
         "keepsamples": {
-            "description": "By default, the set of samples/columns will be kept and the remaining columns will be removed. By unselecting, we will remove the samples/columns you have chosen.", 
+            "description": "Check the box to KEEP the samples/columns you have chosen. By unselecting, we will REMOVE the samples/columns you have chosen.", 
             "name": "Keep the selected samples/columns?:", 
             "required": false, 
             "converter": "api.converters.basic_attributes.BooleanAsIntegerConverter",
             "spec": {
-                "attribute_type": "Boolean"
+                "attribute_type": "Boolean",
+                "default": false
             }
         },
         "keepfeatures": {
-            "description": "By default, the set of genes/rows will be kept and the remaining rows will be removed. By unselecting, we will remove the genes/rows you have chosen.", 
+            "description": "Check the box to KEEP the genes/rows you have chosen. By unselecting, we will REMOVE the genes/rows you have chosen.", 
             "name": "Keep the selected genes/rows?:", 
             "required": false, 
             "converter": "api.converters.basic_attributes.BooleanAsIntegerConverter",
             "spec": {
-                "attribute_type": "Boolean"
+                "attribute_type": "Boolean",
+                "default": false
             }
         }
     }, 
