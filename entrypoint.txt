@@ -1,1 +1,1 @@
-/opt/software/subset_matrix.py -i {{input_matrix}} {% if samples %} -s "{{samples}}" {% endif %} {% if features %} -f "{{features}}" {% endif %} {% if keepsamples %}--keepcols{% endif %} {% if keepfeatures %}--keeprows{% endif %}
+python3 /usr/local/bin/subset_matrix.py -i {{input_matrix}} {% if samples %} -s "{{samples}}" {% endif %} {% if features %} -f "{{features}}" {% endif %} {% if keepsamples %}--keepcols{% endif %} {% if keepfeatures %}--keeprows{% endif %}

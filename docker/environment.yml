@@ -1,0 +1,6 @@
+name: base
+channels:
+  - defaults
+  - anaconda
+dependencies:
+  - pandas=2.1.1
